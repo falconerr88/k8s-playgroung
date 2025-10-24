@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-frontend-deployment
+  labels:
+    app: admin-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-frontend
+  template:
+    metadata:
+      labels:
+        app: admin-frontend
+    spec:
+      containers:
+      - name: admin-frontend
+        image: falconerr88/practicas:frontend-admin
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-frontend-service
+spec:
+  selector:
+    app: admin-frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
