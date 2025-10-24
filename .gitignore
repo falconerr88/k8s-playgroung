@@ -1,9 +1,9 @@
 # TLS certificados y claves privadas
-tls/*.key
-tls/*.crt
+*.key
+*.crt
 
 # Auth real
-auth/auth
+auth
 
 # Archivos temporales de Kubernetes / Minikube
 *.log
