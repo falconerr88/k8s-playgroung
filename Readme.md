@@ -24,15 +24,15 @@ Todos los subdominios usan **TLS** para HTTPS.
 
 No subir tus claves privadas ni certificados reales a GitHub. Generá tus propios certificados locales:
 
-# Admin TLS
+ Admin TLS
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout tls/admin.key -out tls/admin.crt -subj "/CN=admin.web-practica.local/O=admin"
 
-# Frontend + API TLS
+ Frontend + API TLS
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout tls/main.key -out tls/main.crt -subj "/CN=web-practica.local/O=main"
 
-# Crear secretos en Kubernetes
+ Crear secretos en Kubernetes
 kubectl create secret tls admin-tls --key tls/admin.key --cert tls/admin.crt
 kubectl create secret tls main-tls --key tls/main.key --cert tls/main.crt
 
@@ -52,16 +52,16 @@ kubectl apply -f .....
 
 ### 5. Probar que funcione 
 
-# Frontend principal
+ Frontend principal
 curl -vk https://web-practica.local/
 
-# Admin (pide credenciales)
+ Admin (pide credenciales)
 curl -vk -u adminuser:<tu-password> https://admin.web-practica.local/
 
-# API V1
+ API V1
 curl -vk https://api.web-practica.local/v1/test
 
-# API V2
+ API V2
 curl -vk https://api.web-practica.local/v2/test
 
 
